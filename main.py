@@ -1,8 +1,17 @@
 import os
 from time import sleep
 
-REMOVABLE_DEVICES_PATH = '/run/media/michael/'
-DESKTOP_PATH = '/home/michael/Desktop/'
+
+def get_username():
+    import subprocess
+    p = subprocess.Popen(["whoami"], stdout=subprocess.PIPE)
+    out, err = p.communicate()
+    username = out.decode('utf-8').replace('\n', '')
+    return username
+
+
+REMOVABLE_DEVICES_PATH = '/run/media/'+get_username()+'/'
+DESKTOP_PATH = '/home/'+get_username()+'/Desktop/'
 removable_icon = 'drive-removable-media-usb-pendrive'
 
 
